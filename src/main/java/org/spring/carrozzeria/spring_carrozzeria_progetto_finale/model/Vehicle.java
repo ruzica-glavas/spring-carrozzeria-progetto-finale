@@ -31,6 +31,12 @@ public class Vehicle {
     @NotNull //Può essere vuota
     private String model;
 
+    @NotNull
+    private String engine;
+
+    @NotNull
+    private String color;
+
     @PastOrPresent
     private Year year;
 
@@ -129,5 +135,15 @@ public class Vehicle {
     public void setMaintenances(List<Maintenance> maintenances) {
         this.maintenances = maintenances;
     }
+
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
 
 }
