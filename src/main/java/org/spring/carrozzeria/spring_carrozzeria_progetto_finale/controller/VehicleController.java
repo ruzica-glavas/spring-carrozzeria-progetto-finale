@@ -46,13 +46,13 @@ public class VehicleController {
 
     @GetMapping("/{id}")
     public String show(@PathVariable("id") Integer id, Model model){
-        model.addAttribute("Vehicle", vehicleService.getById(id));
+        model.addAttribute("vehicle", vehicleService.getById(id));
         return "vehicles/show";
     }
 
     @GetMapping("/create")
     public String create(Model model){
-        model.addAttribute("vehicke", new Vehicle());
+        model.addAttribute("vehicle", new Vehicle());
         return "vehicles/create";
     }
 
