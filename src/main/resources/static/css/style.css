@@ -1,0 +1,13 @@
+.card-img-top {
+    height: 350px;
+    object-fit: cover;
+    width:100%;
+}
+
+.show-card {
+    width:30%;
+}
+
+/* .card{
+    width: 200px
+} */

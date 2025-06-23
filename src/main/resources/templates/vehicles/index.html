@@ -3,7 +3,7 @@
 <head th:replace="~{fragments/resources :: headTags}">
 </head>
 <body>
-    <nav th:replace="~{fragments/navbar :: navbar('home')}"></nav>
+    <nav th:replace="~{fragments/navbar :: navbar('vehicle')}"></nav>
 
     <div class="container mt-4">
         <div class="mb-3">
@@ -11,24 +11,26 @@
         </div>
     </div>
 
+    <div class="container mt-4">
+            <div class="row row-cols-1 row-cols-md-3 g-4" th:if="${vehicles.size()>0}">
+                <div class="col" th:each="vehicle : ${vehicles}">
+                    <div class="card h-100">
+                        <img th:src="${vehicle.photo}" class="card-img-top" alt="Foto vehicle">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${vehicle.brand} + ' ' +${vehicle.model}">Nome</h5>
+                        </div>
 
-
-    <div class="container">
-        <div class="mt-4 row row-cols-1 row-cols-md-3 g-4" th:if="${vehicles.size()>0}">
-            <div class="col mb-3" th:each="vehicle : ${vehicles}">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title" th:text="${vehicle.brand}">Card title</h5>
-                        <h6 class="card-subtitle mb-2 text-body-secondary" th:text="${vehicle.model}">Card subtitle</h6>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card’s content.</p>
-                        <a th:href="@{vehicles/{id}(id=${vehicle.id})}" class="card-link">Dettaglio</a>
-                        <a href="#" class="card-link">Another link</a>
+                        <div class="card-footer text-center">
+                            <div class="d-flex justify-content-center gap-2 my-2">
+                                <a class="btn btn-outline-primary" th:href="@{vehicles/{id}(id=${vehicle.id})}" role="button">Dettaglio</a>
+                            </div>
+                        </div>                  
                     </div>
                 </div>
             </div>
-        </div>
-        <div th:if="${vehicles.size() == 0}">
-            <h2 class="text-danger mt-4">Nessun veicolo trovato per "<span th:text="${brand}">parola</span>"</h2>
+            <div th:if="${vehicles.size() == 0}">
+                <h2 class="text-danger mt-4">Nessuna veicolo trovato per "<span th:text="${model}">parola</span>"</h2>
+            </div>
         </div>
     </div>
 

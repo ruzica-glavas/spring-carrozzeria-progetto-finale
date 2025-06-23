@@ -52,6 +52,9 @@ public class Vehicle {
     @NotBlank(message = "Owner phone cannnot be null nor empty or blank")
     private String ownerPhone;
 
+    @Lob
+    private String description;
+
     //Maintence
     @OneToMany(mappedBy = "vehicle")
     private List<Maintenance> maintenances;
