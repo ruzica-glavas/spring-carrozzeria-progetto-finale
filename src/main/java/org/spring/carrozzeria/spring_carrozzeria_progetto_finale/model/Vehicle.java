@@ -99,6 +99,24 @@ public class Vehicle {
         this.year = year;
     }
 
+
+    public String getEngine() {
+        return this.engine;
+    }
+
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+
     public String getVin() {
         return this.vin;
     }

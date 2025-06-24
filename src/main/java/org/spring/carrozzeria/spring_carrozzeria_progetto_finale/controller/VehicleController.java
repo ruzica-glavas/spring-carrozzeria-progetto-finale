@@ -52,14 +52,16 @@ public class VehicleController {
 
     @GetMapping("/create")
     public String create(Model model){
+        model.addAttribute("create", true);
         model.addAttribute("vehicle", new Vehicle());
-        return "vehicles/create";
+        return "vehicles/create-or-edit";
     }
 
     @PostMapping("/create")
     public String store(@Valid @ModelAttribute("vehicle") Vehicle formvehicle, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         if (bindingResult.hasErrors()) {
-            return "vehicles/create";
+            model.addAttribute("create", true);
+            return "vehicles/create-or-edit";
         }
         vehicleService.create(formvehicle);
 
@@ -69,13 +71,13 @@ public class VehicleController {
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model){
         model.addAttribute("vehicle", vehicleService.getById(id));
-        return "vehicles/edit";
+        return "vehicles/create-or-edit";
     }
 
     @PostMapping("/edit/{id}")
     public String update(@Valid @ModelAttribute("vehicle") Vehicle formVehicle, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
-            return "vehicles/edit";
+            return "vehicles/create-or-edit";
         }
         vehicleService.update(formVehicle);
         

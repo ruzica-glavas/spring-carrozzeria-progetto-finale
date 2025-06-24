@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/resources :: headTags}">
+</head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('current')}"></nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="mb-4">Aggiungi un nuovo veicolo!</h1> 
+                <form id="vehicle-form" th:object="${vehicle}" th:action="${edit} ? @{/vehicles/edit/{id}(id=${vehicle.id})} : @{/vehicles/create}" method="post">
+                    
+
+                    <!-- <input type="hidden" th:field="${offerta.pizza.id}" id="linked-pizza"> Probabilmente mi servirà dopo quando aggiungerò i lavori -->
+
+                    <div class="mb-2">
+                        <label for="brand" class="form-label">Nome del veicolo</label>
+                        <input type="text" class="form-control" id="brand" th:field="*{brand}" th:errorClass="is-invalid" minlength="2"  maxlength="30" placeholder="es. Ford">
+                        <div th:if="${#fields.hasErrors('brand')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('brand')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="model" class="form-label">Modello del veicolo</label>
+                        <input type="text" class="form-control" id="model" th:field="*{model}"  th:errorClass="is-invalid" placeholder="es. Fiesta">
+
+                        <div th:if="${#fields.hasErrors('model')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('offerDate')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="plateNumber" class="form-label">Numero di Targa</label>
+                        <input type="text" class="form-control" id="plateNumber" min="7" step="0.01" th:field="*{plateNumber}" th:errorClass="is-invalid" placeholder="es. WG64RZH">
+
+                        <div th:if="${#fields.hasErrors('plateNumber')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('plateNumber')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="engine" class="form-label">Motore</label>
+                        <input type="text" class="form-control" id="engine" step="0.01" th:field="*{engine}" th:errorClass="is-invalid" placeholder="es. Benzina">
+
+                        <div th:if="${#fields.hasErrors('engine')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('engine')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+            
+                    <div class="mb-2">
+                        <label for="color" class="form-label">Colore del veicolo</label>
+                        <input type="text" class="form-control" id="color" step="0.01" th:field="*{color}" th:errorClass="is-invalid" placeholder="es. Blu">
+
+                        <div th:if="${#fields.hasErrors('color')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('color')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="year" class="form-label">Anno del veicolo</label>
+                        <input type="number" class="form-control" id="plateNumber" min="4" step="0.01" th:field="*{year}" th:errorClass="is-invalid" placeholder="es. 2022">
+
+                        <div th:if="${#fields.hasErrors('year')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('year')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="vin" class="form-label">Numero di telaio</label>
+                        <input type="text" class="form-control" id="vin" min="7" step="0.01" th:field="*{vin}" th:errorClass="is-invalid" placeholder="es. VF1ABCDE123456789">
+
+                        <div th:if="${#fields.hasErrors('vin')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('vin')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="ownerName" class="form-label">Nome del proprietario</label>
+                        <input type="text" class="form-control" id="ownerName" min="1" step="0.01" th:field="*{ownerName}" th:errorClass="is-invalid" placeholder="es. Luca">
+
+                        <div th:if="${#fields.hasErrors('ownerName')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('ownerName')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="ownerPhone" class="form-label">Numero di telefono del proprietario</label>
+                        <input type="text" class="form-control" id="ownerPhone" min="10" step="0.01" th:field="*{ownerPhone}" th:errorClass="is-invalid" placeholder="es. 3456789012">
+
+                        <div th:if="${#fields.hasErrors('ownerPhone')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('ownerPhone')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="photo" class="form-label">Foto del veicolo</label>
+                        <input type="text" class="form-control" id="photo" min="7" step="0.01" th:field="*{photo}" th:errorClass="is-invalid" placeholder="URL">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="description" class="form-label">Descrizione del veicolo</label>
+                        <textarea class="form-control" id="description" th:field="*{description}" rows="3"></textarea>
+                    </div>
+
+
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <input type="submit" value="Save" class="btn btn-outline-primary">
+					    <input type="reset" value="Reset fields" class="btn btn-outline-warning">
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+    <div th:replace="~{fragments/resources :: goBackButton}"></div>
+
+    <div th:replace="~{fragments/resources :: scripts}"></div>
+</body>
+</html>
