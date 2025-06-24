@@ -12,12 +12,24 @@
     </div>
 
     <div class="container mt-4">
+        <div class="row mb-4">
+        <div class="col d-flex justify-content-end">
+            <form class="d-flex" role="search" method="GET" th:action="@{/vehicles}">
+            <input class="form-control me-2" type="search" name="name" placeholder="Cerca il tuo veicolo" aria-label="Search" th:value="${brand}"/>
+            <button class="btn btn-outline-success" type="submit">Cerca</button>
+            </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-4 mb-4">
             <div class="row row-cols-1 row-cols-md-3 g-4" th:if="${vehicles.size()>0}">
                 <div class="col" th:each="vehicle : ${vehicles}">
                     <div class="card h-100">
                         <img th:src="${vehicle.photo}" class="card-img-top" alt="Foto vehicle">
                         <div class="card-body">
-                            <h5 class="card-title" th:text="${vehicle.brand} + ' ' +${vehicle.model}">Nome</h5>
+                            <h5 class="card-title" th:text="${vehicle.brand} + ' ' +${vehicle.model}"></h5>
+                            <h6 class="card-title" th:text="'Anno: ' + ${vehicle.year}"></h6>
                         </div>
 
                         <div class="card-footer text-center">
@@ -29,7 +41,7 @@
                 </div>
             </div>
             <div th:if="${vehicles.size() == 0}">
-                <h2 class="text-danger mt-4">Nessuna veicolo trovato per "<span th:text="${model}">parola</span>"</h2>
+                <h2 class="text-danger mt-4" th:text="'Nessuna veicolo trovato per' + ' ' + ${name} "></h2>
             </div>
         </div>
     </div>
