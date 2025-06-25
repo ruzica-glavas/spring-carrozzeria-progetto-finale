@@ -96,4 +96,14 @@ public class VehicleController {
 
         return "redirect:/vehicles";
     }
+
+    @GetMapping("/{id}/maintenances")
+        public String maintenance(@PathVariable("id") Integer id, Model model){
+        Maintenance maintenance = new Maintenance();
+        maintenance.setVehicle(vehicleService.getById(id));
+
+        model.addAttribute("maintenance", maintenance);
+
+        return "maintenances/create-or-edit";
+}
 }

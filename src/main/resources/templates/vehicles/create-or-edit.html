@@ -13,7 +13,7 @@
                 <form id="vehicle-form" th:object="${vehicle}" th:action="${edit} ? @{/vehicles/edit/{id}(id=${vehicle.id})} : @{/vehicles/create}" method="post">
 
                     <!-- Serve per salvare le modifiche -->
-                    <input type="hidden" th:field="${vehicle.id}" id="linked-pizza">
+                    <input type="hidden" th:field="${vehicle.id}" id="linked-maintenance">
                     
                     <div class="mb-2">
                         <label for="brand" class="form-label">Nome del veicolo</label>
@@ -31,7 +31,7 @@
 
                         <div th:if="${#fields.hasErrors('model')}" class="invalid-feedback">
                             <ul>
-                                <li th:each="err:${#fields.errors('offerDate')}" th:text="${err}"></li>
+                                <li th:each="err:${#fields.errors('model')}" th:text="${err}"></li>
                             </ul>
                         </div>
                     </div>

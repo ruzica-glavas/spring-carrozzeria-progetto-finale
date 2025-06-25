@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/resources :: headTags}">
+</head>
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar('current')}"></nav>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="mb-4">Aggiungi una nuova lavorazione al veicolo: [[${maintenance.vehicle.getBrand()}]]!</h1>              
+                <form id="vehicle-form" th:object="${maintenance}" th:action="${edit} ? @{/maintenances/edit/{id}(id=${maintenance.id})} : @{/maintenances/create}" method="post">
+
+                    <!-- Serve per salvare le modifiche -->
+                    <input type="hidden" th:field="${maintenance.vehicle.id}" id="linked-vehicle">
+                    
+                    <div class="mb-2">
+                        <label for="brand" class="form-label">Data di inizio lavorazione</label>
+                        <input type="date" class="form-control" id="beginDate" th:field="*{beginDate}" th:errorClass="is-invalid"   placeholder="es. 12/12/2025">
+                        <div th:if="${#fields.hasErrors('beginDate')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('beginDate')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="model" class="form-label">Data di fine lavorazione</label>
+                        <input type="date" class="form-control" id="endDate" th:field="*{endDate}"  th:errorClass="is-invalid" placeholder="es. 12/01/2026">
+
+                        <div th:if="${#fields.hasErrors('endDate')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('endDate')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="plateNumber" class="form-label">Prezzo delle lavorazioni</label>
+                        <input type="number" class="form-control" id="price" min="7" step="0.01" th:field="*{price}" th:errorClass="is-invalid" placeholder="es. 100.00">
+
+                        <div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+                            <ul>
+                                <li th:each="err:${#fields.errors('price')}" th:text="${err}"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                    <div class="mb-2">
+                        <label for="description" class="form-label">Descrizione del lavoro</label>
+                        <textarea class="form-control" id="description" th:field="*{description}" rows="3"></textarea>
+                    </div>
+
+
+                    <div class="d-flex justify-content-center gap-3 mt-3">
+                        <input type="submit" value="Save" class="btn btn-outline-primary">
+					    <input type="reset" value="Reset fields" class="btn btn-outline-warning">
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+    <div th:replace="~{fragments/resources :: goBackButton}"></div>
+
+    <div th:replace="~{fragments/resources :: scripts}"></div>
+</body>
+</html>

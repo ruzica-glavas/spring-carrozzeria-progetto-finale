@@ -10,6 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
@@ -22,14 +23,18 @@ public class Maintenance {
     private Integer id;
 
     @PastOrPresent
-    @NotNull(message = "Maintenance date cannot be null")
-    private LocalDate date;
+    @NotNull(message = "Maintenance begin-date cannot be null")
+    private LocalDate beginDate;
+
+    @FutureOrPresent
+    @NotNull(message = "Maintenance end-date cannot be null")
+    private LocalDate endDate;
 
     @Lob
     private String description;
 
     @NotNull
-    @Min(value = 0, message = "Price cannot be null nor negative")
+    @Min(value = 0, message = "Price cannot be null")
     private Float price;
 
     //Vehicle
@@ -46,13 +51,31 @@ public class Maintenance {
         this.id = id;
     }
 
-    public LocalDate getDate() {
-        return this.date;
+    public LocalDate getbeginDate() {
+        return this.beginDate;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setbeginDate(LocalDate beginDate) {
+        this.beginDate = beginDate;
     }
+
+
+    public LocalDate getBeginDate() {
+        return this.beginDate;
+    }
+
+    public void setBeginDate(LocalDate beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public LocalDate getEndDate() {
+        return this.endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
 
     public String getDescription() {
         return this.description;

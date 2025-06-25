@@ -42,6 +42,8 @@
 
                                 <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button">Modifica</a>
 
+                                <a class="btn btn-outline-warning" th:href="@{vehicles/{id}/maintenances(id=${vehicle.id})}" role="button">Lavori</a>
+
                                 <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}">Elimina</button>
                             </div>
 
