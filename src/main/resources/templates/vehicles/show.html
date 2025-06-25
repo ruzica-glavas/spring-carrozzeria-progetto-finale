@@ -32,9 +32,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-4" th:if="${vehicle.maintenances.size()>0}">
+            <div class="col-md-4  mb-4" th:each="maintenance: ${vehicle.maintenances}">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="'Inzio manutenzione ' + ${maintenance.beginDate}"></h5>
+                        <h6 th:text="'Fine manutenzione '  + ${maintenance.endDate}"></h6>
+                        <p class="card-text" th:text="'Descrizione: ' + ${maintenance.description}"></p>
+                        <p class="card-text" th:text="'Prezzo: € ' + ${maintenance.price}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div> 
 
-
+ 
 
    
 
