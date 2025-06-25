@@ -39,17 +39,41 @@
                         <div class="card-footer text-center">
                             <div class="d-flex justify-content-center gap-2 my-2">
                                 <a class="btn btn-outline-primary" th:href="@{vehicles/{id}(id=${vehicle.id})}" role="button">Dettaglio</a>
+
                                 <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button">Modifica</a>
+
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}">Elimina</button>
                             </div>
-                        </div>                  
-                    </div>
+
+                            <!-- Modale -->
+                        <div class="modal fade" th:id="'delete-modal-' + ${vehicle.id}" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Conferma eliminazione</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+                                </div>
+                                <div class="modal-body"
+                                    th:text="'Sei sicuro di voler cancellare: ' + ${vehicle.brand} + ' ' + ${vehicle.model} + ' con ID: ' + ${vehicle.id} + '?'">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <form th:action="@{/vehicles/delete/{id}(id=${vehicle.id})}" method="post" class="d-inline">
+                                    <input type="submit" class="btn btn-outline-danger" value="Cancella definitivamente">
+                                    </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                  
                 </div>
             </div>
-            <div th:if="${vehicles.size() == 0}">
-                <h2 class="text-danger mt-4" th:text="'Nessuna veicolo trovato per' + ' ' + ${name} "></h2>
-            </div>
         </div>
+            <div th:if="${vehicles.size() == 0}">
+                <h2 class="text-danger mt-4" th:text="'Nessun veicolo trovato per' + ' ' + ${name} "></h2>
+            </div>
     </div>
+   
 
     <div th:replace="~{fragments/resources :: goBackButton}"></div>
 
