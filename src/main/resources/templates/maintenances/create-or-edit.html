@@ -8,7 +8,9 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <h1 class="mb-4">Aggiungi una nuova lavorazione al veicolo: [[${maintenance.vehicle.getBrand()}]]!</h1>              
+ 
+                <h1 class="mb-4" th:if="${edit}" th:text="${'Modifica la lavorazione di questo veicolo: ' + maintenance.vehicle.getBrand() + ' ' + maintenance.vehicle.getModel() + '!'}"></h1> 
+                <h1 class="mb-4" th:unless="${edit}" th:text="${'Aggiungi una nuova lavorazione al veicolo: ' + maintenance.vehicle.getBrand() + ' ' + maintenance.vehicle.getModel() + '!'}"></h1> 
                 <form id="vehicle-form" th:object="${maintenance}" th:action="${edit} ? @{/maintenances/edit/{id}(id=${maintenance.id})} : @{/maintenances/create}" method="post">
 
                     <!-- Serve per salvare le modifiche -->
