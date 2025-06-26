@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.FutureOrPresent;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PastOrPresent;
+//import jakarta.validation.constraints.PastOrPresent;
 
 @Entity
 @Table(name="maintenances")
@@ -22,7 +22,7 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @PastOrPresent
+    //@PastOrPresent
     @NotNull(message = "Maintenance begin-date cannot be null")
     private LocalDate beginDate;
 
@@ -50,15 +50,6 @@ public class Maintenance {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public LocalDate getbeginDate() {
-        return this.beginDate;
-    }
-
-    public void setbeginDate(LocalDate beginDate) {
-        this.beginDate = beginDate;
-    }
-
 
     public LocalDate getBeginDate() {
         return this.beginDate;
