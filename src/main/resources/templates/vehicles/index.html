@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4" sec:authorize="hasAuthority('ADMIN')">
         <div class="row mb-4 align-items-center">
             <div class="col d-flex justify-content-start">
                 <a th:href="@{vehicles/create}" class="btn btn-outline-primary">Aggiungi un nuovo veicolo</a>
@@ -40,11 +40,11 @@
                             <div class="d-flex justify-content-center gap-2 my-2">
                                 <a class="btn btn-outline-primary" th:href="@{vehicles/{id}(id=${vehicle.id})}" role="button">Dettaglio</a>
 
-                                <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button">Modifica</a>
+                                <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Modifica</a>
 
-                                <a class="btn btn-outline-warning" th:href="@{vehicles/{id}/maintenances(id=${vehicle.id})}" role="button">Lavori</a>
+                                <a class="btn btn-outline-warning" th:href="@{vehicles/{id}/maintenances(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Lavori</a>
 
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}">Elimina</button>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}" sec:authorize="hasAuthority('ADMIN')">Elimina</button>
                             </div>
 
                             <!-- Modale -->

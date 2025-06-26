@@ -42,7 +42,7 @@
                         <p class="card-text" th:text="'Descrizione: ' + ${maintenance.description}"></p>
                         <p class="card-text" th:text="'Prezzo: € ' + ${maintenance.price}"></p>
                     </div>
-                    <a class="btn btn-outline-info" th:href="@{/maintenances/edit/{id}(id=${maintenance.id})}" role="button" >Modifica</a>
+                    <a class="btn btn-outline-info" th:href="@{/maintenances/edit/{id}(id=${maintenance.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Modifica</a>
                 </div>
             </div>
         </div>
