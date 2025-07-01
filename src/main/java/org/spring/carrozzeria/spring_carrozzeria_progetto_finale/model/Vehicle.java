@@ -3,6 +3,8 @@ package org.spring.carrozzeria.spring_carrozzeria_progetto_finale.model;
 import java.time.Year;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -57,6 +59,7 @@ public class Vehicle {
 
     //Maintence
     @OneToMany(mappedBy = "vehicle")
+    @JsonManagedReference //Per far in modo che quando aggiungo Rect non vada in overloop. In questo modo comunico che l'entità veicolo é il padre dell'entità dei lavori.
     private List<Maintenance> maintenances;
 
     public Integer getId() {

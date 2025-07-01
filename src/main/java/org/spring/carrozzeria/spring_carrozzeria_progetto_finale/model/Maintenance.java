@@ -2,6 +2,8 @@ package org.spring.carrozzeria.spring_carrozzeria_progetto_finale.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -40,6 +42,7 @@ public class Maintenance {
     //Vehicle
     @ManyToOne
     @JoinColumn(name="vehicle_id", nullable = false)
+    @JsonBackReference //Per far in modo che quando aggiungo Rect non vada in overloop. In questo modo comunico che l'entità lavori é il figlio dell'entità dei veicolo.
     private Vehicle vehicle;
 
 
