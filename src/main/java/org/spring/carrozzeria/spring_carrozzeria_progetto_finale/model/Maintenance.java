@@ -42,7 +42,7 @@ public class Maintenance {
     //Vehicle
     @ManyToOne
     @JoinColumn(name="vehicle_id", nullable = false)
-    @JsonBackReference //Per far in modo che quando aggiungo Rect non vada in overloop. In questo modo comunico che l'entità lavori é il figlio dell'entità dei veicolo.
+    @JsonBackReference //Per far in modo che quando aggiungo React non vada in overloop. In questo modo comunico che l'entità lavori é il figlio dell'entità dei veicolo.
     private Vehicle vehicle;
 
 

@@ -59,7 +59,7 @@ public class Vehicle {
 
     //Maintence
     @OneToMany(mappedBy = "vehicle")
-    @JsonManagedReference //Per far in modo che quando aggiungo Rect non vada in overloop. In questo modo comunico che l'entità veicolo é il padre dell'entità dei lavori.
+    @JsonManagedReference //Per far in modo che quando aggiungo React non vada in overloop. In questo modo comunico che l'entità veicolo é il padre dell'entità dei lavori.
     private List<Maintenance> maintenances;
 
     public Integer getId() {
