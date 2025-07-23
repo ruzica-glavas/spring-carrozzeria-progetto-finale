@@ -11,20 +11,23 @@
         </div>
     </div>
 
-    <div class="container mt-4" sec:authorize="hasAuthority('ADMIN')">
-        <div class="row mb-4 align-items-center">
-            <div class="col d-flex justify-content-start">
-                <a th:href="@{vehicles/create}" class="btn btn-outline-primary">Aggiungi un nuovo veicolo</a>
+    <div class="container mt-4">
+        <div class="row align-items-center">
+            <div class="col d-flex justify-content-start" sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{vehicles/create}" class="btn btn-outline-primary">
+                Aggiungi un nuovo veicolo
+                </a>
             </div>
 
             <div class="col d-flex justify-content-end">
-            <form class="d-flex" role="search" method="GET" th:action="@{/vehicles}">
-                <input class="form-control me-2" type="search" name="name" placeholder="Cerca il tuo veicolo" aria-label="Search" th:value="${brand}" />
-                <button class="btn btn-outline-success" type="submit">Cerca</button>
-            </form>
+                <form class="d-flex" role="search" method="GET" th:action="@{/vehicles}">
+                    <input class="form-control me-2" type="search" name="name" placeholder="Cerca il tuo veicolo" aria-label="Search" th:value="${brand}" />
+                    <button class="btn btn-outline-success" type="submit">Cerca</button>
+                </form>
             </div>
         </div>
     </div>
+
 
     <div class="container mt-4 mb-4">
             <div class="row row-cols-1 row-cols-md-3 g-4" th:if="${vehicles.size()>0}">
