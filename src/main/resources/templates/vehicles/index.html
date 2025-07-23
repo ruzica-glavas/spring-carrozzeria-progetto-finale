@@ -21,8 +21,8 @@
 
             <div class="col d-flex justify-content-end">
                 <form class="d-flex" role="search" method="GET" th:action="@{/vehicles}">
-                    <input class="form-control me-2" type="search" name="name" placeholder="Cerca il tuo veicolo" aria-label="Search" th:value="${brand}" />
-                    <button class="btn btn-outline-success" type="submit">Cerca</button>
+                    <input class="form-control me-2" type="search" name="name" placeholder="Search your vehicle" aria-label="Search" th:value="${brand}" />
+                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
         </div>
@@ -41,13 +41,13 @@
 
                         <div class="card-footer text-center">
                             <div class="d-flex justify-content-center gap-2 my-2">
-                                <a class="btn btn-outline-primary" th:href="@{vehicles/{id}(id=${vehicle.id})}" role="button">Dettaglio</a>
+                                <a class="btn btn-outline-primary" th:href="@{vehicles/{id}(id=${vehicle.id})}" role="button">Details</a>
 
-                                <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Modifica</a>
+                                <a class="btn btn-outline-success" th:href="@{vehicles/edit/{id}(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Modify</a>
 
-                                <a class="btn btn-outline-warning" th:href="@{vehicles/{id}/maintenances(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Lavori</a>
+                                <a class="btn btn-outline-warning" th:href="@{vehicles/{id}/maintenances(id=${vehicle.id})}" role="button" sec:authorize="hasAuthority('ADMIN')">Add Works</a>
 
-                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}" sec:authorize="hasAuthority('ADMIN')">Elimina</button>
+                                <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" th:attr="data-bs-target='#delete-modal-' + ${vehicle.id}" sec:authorize="hasAuthority('ADMIN')">Delete</button>
                             </div>
 
                             <!-- Modale -->
@@ -55,14 +55,14 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel">Conferma eliminazione</h5>
+                                    <h5 class="modal-title" id="modalLabel">Confirm</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
                                 </div>
                                 <div class="modal-body"
                                     th:text="'Sei sicuro di voler cancellare: ' + ${vehicle.brand} + ' ' + ${vehicle.model} + ' con ID: ' + ${vehicle.id} + '?'">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                                     <form th:action="@{/vehicles/delete/{id}(id=${vehicle.id})}" method="post" class="d-inline">
                                     <input type="submit" class="btn btn-outline-danger" value="Cancella definitivamente">
                                     </form>
